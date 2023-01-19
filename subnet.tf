@@ -1,4 +1,8 @@
 resource "aws_subnet" "myvpc_subnet" {
-  vpc_id = "vpc-0f2b98b464d200957"
-  cidr_block = "10.0.0.0/24"
+  vpc_id = aws_vpc.myvpc.id
+  cidr_block = var.subnet-cidr[count.index]
+  count = length(var.subnet-cidr)
+  tags = {
+    Name = var.subnet-name[count.index]
+  }
 }
