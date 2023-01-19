@@ -41,7 +41,12 @@ resource "aws_security_group" "private-SG" {
     cidr_blocks = [var.RT-cidr[0]]
   }
 
-
+  ingress {
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = [var.RT-cidr[0]]
+  }
 
   egress {
     from_port   = 0
